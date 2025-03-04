@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxvueqrj88k3g"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vai0o"]
+radius = 2.0
+height = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3w2n"]
+size = Vector2(8, 42)
+
+[node name="Nunchucks" type="Node2D"]
+
+[node name="Chain" type="Node2D" parent="."]
+position = Vector2(0, 96)
+
+[node name="ChainLink" type="RigidBody2D" parent="Chain"]
+position = Vector2(0, -51)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/ChainLink"]
+shape = SubResource("CapsuleShape2D_vai0o")
+
+[node name="ChainLink2" type="RigidBody2D" parent="Chain"]
+position = Vector2(0, -45)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/ChainLink2"]
+shape = SubResource("CapsuleShape2D_vai0o")
+
+[node name="ChainLink3" type="RigidBody2D" parent="Chain"]
+position = Vector2(0, -39)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/ChainLink3"]
+shape = SubResource("CapsuleShape2D_vai0o")
+
+[node name="ChainLink4" type="RigidBody2D" parent="Chain"]
+position = Vector2(0, -33)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/ChainLink4"]
+shape = SubResource("CapsuleShape2D_vai0o")
+
+[node name="ChainLink5" type="RigidBody2D" parent="Chain"]
+position = Vector2(0, -27)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/ChainLink5"]
+shape = SubResource("CapsuleShape2D_vai0o")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Chain"]
+position = Vector2(0, -48)
+node_a = NodePath("../ChainLink")
+node_b = NodePath("../ChainLink2")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Chain"]
+position = Vector2(0, -42)
+node_a = NodePath("../ChainLink2")
+node_b = NodePath("../ChainLink3")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="Chain"]
+position = Vector2(0, -36)
+node_a = NodePath("../ChainLink3")
+node_b = NodePath("../ChainLink4")
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="Chain"]
+position = Vector2(0, -30)
+node_a = NodePath("../ChainLink4")
+node_b = NodePath("../ChainLink5")
+
+[node name="Stick1" type="RigidBody2D" parent="."]
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stick1"]
+shape = SubResource("RectangleShape2D_o3w2n")
+
+[node name="Stick2" type="RigidBody2D" parent="."]
+position = Vector2(0, 94)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stick2"]
+shape = SubResource("RectangleShape2D_o3w2n")
+
+[node name="StickToChain1" type="PinJoint2D" parent="."]
+position = Vector2(0, 41)
+node_a = NodePath("../Stick1")
+node_b = NodePath("../Chain/ChainLink")
+
+[node name="StickToChain2" type="PinJoint2D" parent="."]
+position = Vector2(0, 73)
+node_a = NodePath("../Chain/ChainLink5")
+node_b = NodePath("../Stick2")

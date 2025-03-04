@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://jvr74kpe6ekr"]
+
+[ext_resource type="Script" path="res://Scripts/ball.gd" id="1_sy8a0"]
+[ext_resource type="Texture2D" uid="uid://d2yvtbj7y571r" path="res://Art/crazyball.png" id="2_0f0xx"]
+[ext_resource type="Texture2D" uid="uid://m88kbtjmpm5o" path="res://Art/ball2.png" id="2_aqsj1"]
+[ext_resource type="Texture2D" uid="uid://bmi0raq2i0avc" path="res://Art/squaeball.png" id="3_4dwdx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mw2iq"]
+friction = 0.05
+bounce = 0.4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8v1al"]
+radius = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkpga"]
+atlas = ExtResource("2_0f0xx")
+region = Rect2(0, 0, 87, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71qdl"]
+atlas = ExtResource("2_aqsj1")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15xaf"]
+atlas = ExtResource("3_4dwdx")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cet4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkpga")
+}],
+"loop": true,
+"name": &"crazy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71qdl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15xaf")
+}],
+"loop": true,
+"name": &"square",
+"speed": 5.0
+}]
+
+[node name="Ball" type="RigidBody2D"]
+position = Vector2(512, 368)
+collision_layer = 14
+collision_mask = 15
+mass = 0.6
+physics_material_override = SubResource("PhysicsMaterial_mw2iq")
+continuous_cd = 2
+script = ExtResource("1_sy8a0")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8v1al")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8v1al")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 4)
+scale = Vector2(0.56, 0.56)
+sprite_frames = SubResource("SpriteFrames_0cet4")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

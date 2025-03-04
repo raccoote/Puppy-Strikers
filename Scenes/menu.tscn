@@ -1,0 +1,135 @@
+[gd_scene load_steps=9 format=3 uid="uid://bcik8jsvdeep4"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_bo58j"]
+[ext_resource type="PackedScene" uid="uid://cm2rlnv5eh2kh" path="res://Scenes/puppies.tscn" id="2_n8h7p"]
+[ext_resource type="Texture2D" uid="uid://dovlmn4yveqji" path="res://Art/button.png" id="2_qavjo"]
+[ext_resource type="Texture2D" uid="uid://b0r5rmofiluxr" path="res://Art/back-arrow-icon.png" id="3_4keer"]
+[ext_resource type="Texture2D" uid="uid://5ajourq5evyr" path="res://Art/selectScreen.png" id="5_3cn7m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvq74"]
+atlas = ExtResource("2_qavjo")
+region = Rect2(275, 0, 275, 175)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yej8c"]
+atlas = ExtResource("2_qavjo")
+region = Rect2(275, 175, 275, 175)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k22ri"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvq74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yej8c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bo58j")
+
+[node name="TwoPlayer" type="Button" parent="."]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 501.0
+offset_right = 794.0
+offset_bottom = 606.0
+text = "PLAY"
+flat = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TwoPlayer"]
+position = Vector2(106, 59)
+sprite_frames = SubResource("SpriteFrames_k22ri")
+
+[node name="LeftPlayerSelect" parent="." instance=ExtResource("2_n8h7p")]
+position = Vector2(403, 391)
+scale = Vector2(0.633233, 0.633233)
+frame = 2
+frame_progress = 0.986185
+flip_h = false
+
+[node name="RightPlayerSelect" parent="." instance=ExtResource("2_n8h7p")]
+position = Vector2(969, 389)
+scale = Vector2(0.633, 0.633)
+frame_progress = 0.469823
+
+[node name="ButtonLeftBack" type="Button" parent="."]
+z_index = -4
+layout_mode = 0
+offset_left = 273.0
+offset_top = 380.0
+offset_right = 313.0
+offset_bottom = 428.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ButtonLeftBack"]
+z_index = 6
+position = Vector2(24, 24)
+scale = Vector2(0.0625, 0.0937499)
+texture = ExtResource("3_4keer")
+
+[node name="ButtonLeftForward" type="Button" parent="."]
+z_index = -2
+layout_mode = 0
+offset_left = 504.0
+offset_top = 381.0
+offset_right = 544.0
+offset_bottom = 429.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ButtonLeftForward"]
+z_index = 1
+position = Vector2(16, 24)
+scale = Vector2(0.0625, 0.0937499)
+texture = ExtResource("3_4keer")
+flip_h = true
+
+[node name="ButtonRightBack" type="Button" parent="."]
+z_index = -2
+layout_mode = 0
+offset_left = 826.0
+offset_top = 380.0
+offset_right = 866.0
+offset_bottom = 428.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ButtonRightBack"]
+z_index = 1
+position = Vector2(24, 24)
+scale = Vector2(0.0625, 0.0937499)
+texture = ExtResource("3_4keer")
+
+[node name="ButtonRightForward" type="Button" parent="."]
+z_index = -2
+layout_mode = 0
+offset_left = 1070.0
+offset_top = 383.0
+offset_right = 1110.0
+offset_bottom = 431.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ButtonRightForward"]
+z_index = 1
+position = Vector2(16, 24)
+scale = Vector2(0.0625, 0.0937499)
+texture = ExtResource("3_4keer")
+flip_h = true
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(686, 383)
+scale = Vector2(0.710417, 0.712963)
+texture = ExtResource("5_3cn7m")
+
+[connection signal="button_down" from="TwoPlayer" to="." method="_on_two_player_button_down"]
+[connection signal="button_up" from="TwoPlayer" to="." method="_on_two_player_button_up"]
+[connection signal="pressed" from="TwoPlayer" to="." method="_on_two_player_pressed"]
+[connection signal="pressed" from="ButtonLeftBack" to="." method="_on_button_left_back_pressed"]
+[connection signal="pressed" from="ButtonLeftForward" to="." method="_on_button_left_forward_pressed"]
+[connection signal="pressed" from="ButtonRightBack" to="." method="_on_button_right_back_pressed"]
+[connection signal="pressed" from="ButtonRightForward" to="." method="_on_button_right_forward_pressed"]

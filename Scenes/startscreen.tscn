@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://cx4iwyhsdcvk8"]
+
+[ext_resource type="Script" path="res://Scenes/startscreen.gd" id="1_2e0x1"]
+[ext_resource type="Texture2D" uid="uid://dovlmn4yveqji" path="res://Art/button.png" id="2_qavjo"]
+[ext_resource type="Texture2D" uid="uid://bve4iaijpvihl" path="res://Art/menu pic.png" id="4_c0tt2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2eu6g"]
+atlas = ExtResource("2_qavjo")
+region = Rect2(275, 0, 275, 175)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahni7"]
+atlas = ExtResource("2_qavjo")
+region = Rect2(275, 175, 275, 175)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k22ri"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2eu6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahni7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7k3t"]
+atlas = ExtResource("2_qavjo")
+region = Rect2(0, 0, 275, 175)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m51u0"]
+atlas = ExtResource("2_qavjo")
+region = Rect2(0, 175, 275, 175)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0rgdt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7k3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m51u0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2e0x1")
+
+[node name="TwoPlayer2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 975.0
+offset_top = 365.0
+offset_right = 1134.0
+offset_bottom = 430.0
+text = "PLAY"
+flat = true
+
+[node name="buttonPlay" type="AnimatedSprite2D" parent="TwoPlayer2"]
+position = Vector2(93, 40)
+sprite_frames = SubResource("SpriteFrames_k22ri")
+frame_progress = 0.0888871
+
+[node name="HowToPlay" type="Button" parent="."]
+layout_mode = 0
+offset_left = 974.0
+offset_top = 494.0
+offset_right = 1147.0
+offset_bottom = 579.0
+text = "GUIDE"
+flat = true
+
+[node name="buttonGuide" type="AnimatedSprite2D" parent="HowToPlay"]
+position = Vector2(103, 51)
+sprite_frames = SubResource("SpriteFrames_0rgdt")
+frame_progress = 0.911487
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(686, 383)
+scale = Vector2(0.710417, 0.712963)
+texture = ExtResource("4_c0tt2")
+
+[connection signal="button_down" from="TwoPlayer2" to="." method="_on_two_player_2_button_down"]
+[connection signal="button_up" from="TwoPlayer2" to="." method="start_button_up"]
+[connection signal="pressed" from="TwoPlayer2" to="." method="start_pressed"]
+[connection signal="button_down" from="HowToPlay" to="." method="_on_how_to_play_button_down"]
+[connection signal="button_up" from="HowToPlay" to="." method="_on_how_to_play_button_up"]
+[connection signal="pressed" from="HowToPlay" to="." method="_on_how_to_play_pressed"]

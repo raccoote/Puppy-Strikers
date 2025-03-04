@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bc4e2s8w7wr1x"
+path="res://.godot/imported/happy dog.wav-de1a8a03b567d8dc2f39bd6d57f5b121.sample"
+
+[deps]
+
+source_file="res://Art/sounds/happy dog.wav"
+dest_files=["res://.godot/imported/happy dog.wav-de1a8a03b567d8dc2f39bd6d57f5b121.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
